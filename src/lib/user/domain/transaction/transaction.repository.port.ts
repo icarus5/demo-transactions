@@ -5,6 +5,8 @@ export abstract class TransactionRepositoryPort {
 
   abstract findById(id: string): Promise<Transaction | null>;
 
+  abstract findByUserId(id: string): Promise<Transaction | null>;
+
   abstract create(
     transaction: Omit<Transaction, 'id' | 'createdAt' | 'updatedAt'>,
   ): Promise<Transaction>;

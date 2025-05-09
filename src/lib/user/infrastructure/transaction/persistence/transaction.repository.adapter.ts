@@ -19,6 +19,10 @@ export class TransactionRepositoryAdapter implements TransactionRepositoryPort {
     return this.transactionRepository.findOneBy({ id });
   }
 
+  findByUserId(userId: string): Promise<Transaction | null> {
+    return this.transactionRepository.findOneBy({ userId });
+  }
+
   async create(
     transaction: Omit<Transaction, 'id' | 'createdAt' | 'updatedAt'>,
   ): Promise<Transaction> {

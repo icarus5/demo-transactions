@@ -5,6 +5,8 @@ import { GetAllTransactionHandler } from 'src/lib/user/application/transaction/g
 import { Transaction } from 'src/lib/user/domain/transaction/transaction';
 import { GetTransactionIdQuery } from '../../../application/transaction/get-id/get-transaction-id.query';
 import { GetTransactionIdHandler } from '../../../application/transaction/get-id/get-transaction-id.handler';
+import { GetTransactionUserIdQuery } from '../../../application/transaction/get-user-id/get-transaction-user-id.query';
+import { GetTransactionUserIdHandler } from '../../../application/transaction/get-user-id/get-transaction-user-id.handler';
 
 @Controller('transactions')
 export class TransactionController {
@@ -12,6 +14,7 @@ export class TransactionController {
     private readonly createTransactionHandler: CreateTransactionHandler,
     private readonly getTransactionHandler: GetAllTransactionHandler,
     private readonly getTransactionByIdHandler: GetTransactionIdHandler,
+    private readonly getTransactionByUserIdHandler: GetTransactionUserIdHandler, // Cambiado a GetTransactionIdHandler
   ) {}
 
   @Post()
@@ -29,5 +32,11 @@ export class TransactionController {
   async getTransactionById(@Param('id') id: string) {
     const query = new GetTransactionIdQuery(id);
     return this.getTransactionByIdHandler.execute(query);
+  }
+
+  @Get('/user/:id')
+  async getTransactionByUserId(@Param('id') id: string) {
+    const query = new GetTransactionUserIdQuery(id);
+    return this.getTransactionByUserIdHandler.execute(query);
   }
 }

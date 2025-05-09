@@ -17,4 +17,6 @@ export abstract class UserRepositoryPort {
   ): Promise<User | null>;
 
   abstract delete(id: string): Promise<void>;
+
+  abstract findByDocument(document: string): Promise<User | null>;
 }

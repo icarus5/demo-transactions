@@ -6,6 +6,7 @@ import { TransactionRepositoryAdapter } from '../../infrastructure/transaction/p
 import { CreateTransactionHandler } from './create/create-transaction.handlers';
 import { GetAllTransactionHandler } from './get-all/get-all-transaction.handler';
 import { GetTransactionIdHandler } from './get-id/get-transaction-id.handler';
+import { GetTransactionUserIdHandler } from './get-user-id/get-transaction-user-id.handler';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Transaction])],
@@ -17,11 +18,13 @@ import { GetTransactionIdHandler } from './get-id/get-transaction-id.handler';
     CreateTransactionHandler,
     GetAllTransactionHandler,
     GetTransactionIdHandler,
+    GetTransactionUserIdHandler,
   ],
   exports: [
     CreateTransactionHandler,
     GetAllTransactionHandler,
     GetTransactionIdHandler,
+    GetTransactionUserIdHandler,
     TransactionRepositoryPort, // Asegúrate de exportar TransactionRepositoryPort
   ],
 })

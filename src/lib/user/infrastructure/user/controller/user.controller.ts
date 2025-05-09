@@ -7,13 +7,16 @@ import { CreateUserHandler } from 'src/lib/user/application/user/create/create-u
 import { CreateUserDto } from '../../../domain/user/user-dto';
 import { GetUserIdHandler } from 'src/lib/user/application/user/get-id/get-user-id.handler';
 import { GetUserIdQuery } from 'src/lib/user/application/user/get-id/get-user-id.query';
+import { GetUserDocumentHandler } from '../../../application/user/get-document/get-user-document.handler';
+import { GetUserDocumentQuery } from '../../../application/user/get-document/get-user-document.query';
 
 @Controller('users')
 export class UserController {
   constructor(
     private readonly createUserHandler: CreateUserHandler,
     private readonly getUserHandler: GetAllUserHandler,
-    private readonly getUserByIdHandler: GetUserIdHandler, // Assuming you have a handler for getting user by ID
+    private readonly getUserByIdHandler: GetUserIdHandler, //
+    private readonly getUserByDocumentHandler: GetUserDocumentHandler, //
   ) {}
 
   @Post()
@@ -32,5 +35,11 @@ export class UserController {
   async getById(@Param('id') id: string) {
     const query = new GetUserIdQuery(id);
     return this.getUserByIdHandler.execute(query);
+  }
+
+  @Get('/document/:document')
+  async getByDocument(@Param('document') document: string) {
+    const query = new GetUserDocumentQuery(document);
+    return this.getUserByDocumentHandler.execute(query);
   }
 }

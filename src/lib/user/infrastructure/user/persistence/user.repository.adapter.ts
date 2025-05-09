@@ -41,4 +41,8 @@ export class UserRepositoryAdapter implements UserRepositoryPort {
   async delete(id: string): Promise<void> {
     return this.userRepository.delete(id).then(() => undefined);
   }
+
+  async findByDocument(document: string): Promise<User | null> {
+    return this.userRepository.findOneBy({ document });
+  }
 }

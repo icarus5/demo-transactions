@@ -8,6 +8,9 @@ export class User {
   @Column()
   name: string;
 
+  @Column()
+  document: string;
+
   @Column({ unique: true })
   email: string;
 
