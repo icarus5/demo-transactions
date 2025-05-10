@@ -6,13 +6,13 @@ import { Transaction } from '../../../domain/transaction/transaction';
 
 @Injectable()
 export class GetTransactionUserIdHandler
-  implements IQueryHandler<GetTransactionUserIdQuery, Transaction>
+  implements IQueryHandler<GetTransactionUserIdQuery, Transaction[]>
 {
   constructor(
     private readonly transactionRepository: TransactionRepositoryPort,
   ) {}
 
-  async execute(query: GetTransactionUserIdQuery): Promise<Transaction> {
+  async execute(query: GetTransactionUserIdQuery): Promise<Transaction[]> {
     const { userId } = query;
     const transaction = await this.transactionRepository.findByUserId(
       query.userId,
